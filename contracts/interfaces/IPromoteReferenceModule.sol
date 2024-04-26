@@ -7,13 +7,12 @@ interface IPromoteReferenceModule is IReferenceModule {
     struct Reward {
         address asset;
         uint256 amount;
-        uint256 creatorProfileId;
         uint256 expiresAt;
     }
 
     event ExpiredRewardClaimed(
-        uint256 indexed pubId,
         uint256 indexed creatorProfileId,
+        uint256 indexed pubId,
         uint256 indexed collectorProfileId,
         address asset,
         uint256 amount,
@@ -21,8 +20,8 @@ interface IPromoteReferenceModule is IReferenceModule {
     );
 
     event Promoted(
-        uint256 indexed pubId,
         uint256 indexed creatorProfileId,
+        uint256 indexed pubId,
         uint256 indexed collectorProfileId,
         address asset,
         uint256 amount,
@@ -30,8 +29,8 @@ interface IPromoteReferenceModule is IReferenceModule {
     );
 
     event RewardCollected(
-        uint256 indexed pubId,
         uint256 indexed creatorProfileId,
+        uint256 indexed pubId,
         uint256 indexed collectorProfileId,
         address asset,
         uint256 amount,
@@ -45,7 +44,11 @@ interface IPromoteReferenceModule is IReferenceModule {
 
     function getAccruedFeesByAsset(address asset) external view returns (uint256);
 
-    function getRewardByPubIdOf(uint256 pubId, uint256 creatorProfileId) external view returns (Reward memory);
+    function getReward(
+        uint256 creatorProfileId,
+        uint256 pubId,
+        uint256 collectorProfileId
+    ) external view returns (Reward memory);
 
     function withdrawAccruedFeesByAsset(address asset, address receiver) external;
 }
