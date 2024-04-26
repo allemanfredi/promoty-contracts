@@ -172,7 +172,7 @@ contract PromoteReferenceModule is
             IERC20(rewardAsset).safeTransfer(IERC721(HUB).ownerOf(collectorProfileId), collectorRewardAmount);
             emit RewardCollected(
                 creatorProfileId,
-                pointedPubId,
+                pubId,
                 collectorProfileId,
                 rewardAsset,
                 collectorRewardAmount,
